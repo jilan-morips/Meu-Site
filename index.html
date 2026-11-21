@@ -346,11 +346,19 @@ p {
 }
 </style>
    </head><body><div id="clima-box" style="position: fixed; top: 88px; right: 35px; background-color: rgba(0, 0, 0, 0.6); color: white; padding: 10px 18px; border-radius: 12px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); z-index: 1000;">
-        <span id="clima-texto">Clima indisponível</span>
+         <span id="clima-texto">Clima indisponível</span>
     <br>
     <span id="clima-aracaju" style="display: inline-block; margin-top: 6px;">Carregando Aracaju...</span>
+    <div id="clima-cidade-escolhida" style="margin-top: 6px; font-weight: bold;"></div>
+    <select id="seletor-cidade" onchange="selecionarCidade()" style="margin-top: 8px; width: 100%; padding: 4px; border-radius: 6px; border: none; font-size: 13px; background: rgba(255,255,255,0.9); color: #222; cursor: pointer;">
+      <option value="">🔍 Pesquisar cidade (SE)...</option>
+    </select>
+    <button type="button" onclick="alternar7Dias()" style="margin-top: 8px; width: 100%; padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.15); color: #fff; font-size: 12px; cursor: pointer;">
+      📅 Próximos 7 dias (Dores)
+    </button>
+    <div id="painel-7dias" style="display: none; margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.25); font-size: 12px; text-align: left; line-height: 1.6;"></div>
+</div>
 
-  </div>
 
 
   <h2 class="titulo-cidade">NOSSA SENHORA DAS DORES - SE</h2>
@@ -582,15 +590,60 @@ p {
 </script>
 
 <script>
+  const cidadesSergipe = [
+    ["Amparo do São Francisco", -10.13, -36.93], ["Aquidabã", -10.28, -37.02], ["Aracaju", -10.94, -37.07],
+    ["Arauá", -11.26, -37.62], ["Areia Branca", -10.75, -37.31], ["Barra dos Coqueiros", -10.91, -37.03],
+    ["Boquim", -11.14, -37.62], ["Brejo Grande", -10.42, -36.46], ["Campo do Brito", -10.73, -37.49],
+    ["Canhoba", -10.14, -36.98], ["Canindé de São Francisco", -9.66, -37.78], ["Capela", -10.50, -37.05],
+    ["Carira", -10.35, -37.70], ["Carmópolis", -10.65, -36.99], ["Cedro de São João", -10.25, -36.88],
+    ["Cristinápolis", -11.47, -37.75], ["Cumbe", -10.35, -37.18], ["Divina Pastora", -10.69, -37.14],
+    ["Estância", -11.26, -37.44], ["Feira Nova", -10.26, -37.31], ["Frei Paulo", -10.54, -37.53],
+    ["Gararu", -9.96, -37.08], ["General Maynard", -10.69, -36.98], ["Gracho Cardoso", -10.22, -37.19],
+    ["Ilha das Flores", -10.43, -36.54], ["Indiaroba", -11.51, -37.51], ["Itabaiana", -10.68, -37.42],
+    ["Itabaianinha", -11.27, -37.79], ["Itabi", -10.12, -37.10], ["Itaporanga d'Ajuda", -10.99, -37.31],
+    ["Japaratuba", -10.59, -36.94], ["Japoatã", -10.34, -36.80], ["Lagarto", -10.91, -37.65],
+    ["Laranjeiras", -10.80, -37.17], ["Macambira", -10.66, -37.54], ["Malhada dos Bois", -10.35, -36.92],
+    ["Malhador", -10.65, -37.30], ["Maruim", -10.73, -37.08], ["Moita Bonita", -10.57, -37.34],
+    ["Monte Alegre de Sergipe", -10.02, -37.56], ["Muribeca", -10.42, -37.02], ["Neópolis", -10.32, -36.57],
+    ["Nossa Senhora Aparecida", -10.44, -37.48], ["Nossa Senhora da Glória", -10.21, -37.42],
+    ["Nossa Senhora das Dores", -10.49, -37.19], ["Nossa Senhora de Lourdes", -10.08, -37.05],
+    ["Nossa Senhora do Socorro", -10.85, -37.12], ["Pacatuba", -10.45, -36.65], ["Pedra Mole", -10.61, -37.68],
+    ["Pedrinhas", -11.19, -37.67], ["Pinhão", -10.56, -37.72], ["Pirambu", -10.73, -36.85],
+    ["Poço Redondo", -9.80, -37.68], ["Poço Verde", -10.70, -38.18], ["Porto da Folha", -9.91, -37.27],
+    ["Propriá", -10.21, -36.84], ["Riachão do Dantas", -11.06, -37.72], ["Riachuelo", -10.72, -37.18],
+    ["Ribeirópolis", -10.53, -37.43], ["Rosário do Catete", -10.69, -37.03], ["Salgado", -11.03, -37.47],
+    ["Santa Luzia do Itanhy", -11.35, -37.44], ["Santa Rosa de Lima", -10.64, -37.19],
+    ["Santana do São Francisco", -10.29, -36.60], ["Santo Amaro das Brotas", -10.78, -37.05],
+    ["São Cristóvão", -11.01, -37.20], ["São Domingos", -10.79, -37.56], ["São Francisco", -10.33, -36.88],
+    ["São Miguel do Aleixo", -10.38, -37.38], ["Simão Dias", -10.73, -37.81], ["Siriri", -10.60, -37.11],
+    ["Telha", -10.20, -36.88], ["Tobias Barreto", -11.18, -37.99], ["Tomar do Geru", -11.37, -37.84],
+    ["Umbaúba", -11.38, -37.65]
+  ];
+
+  let cidadeAtual7Dias = { nome: 'Dores', lat: -10.49, lon: -37.19 };
+
+  function preencherListaCidades() {
+    const select = document.getElementById('seletor-cidade');
+    if (!select) return;
+    cidadesSergipe.forEach((cidade, index) => {
+      const opt = document.createElement('option');
+      opt.value = index;
+      opt.textContent = cidade[0];
+      select.appendChild(opt);
+    });
+  }
+
   async function buscarCidade(nome, lat, lon, idElemento) {
-    const servidor = 'https://' + 'api' + '.open-meteo.com';
-const url = servidor + '/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current_weather=true';
+            const u = new URL('https://' + ['api', 'open-meteo', 'com'].join('.'));
+    u.pathname = '/v1/forecast';
+    u.search = `latitude=${lat}&longitude=${lon}&current_weather=true`;
+    const url = u.toString();
 
 
     try {
       const resposta = await fetch(url);
       const dados = await resposta.json();
-            const temperatura = Math.round(dados.current_weather.temperature);
+      const temperatura = Math.round(dados.current_weather.temperature);
       const codigoClima = dados.current_weather.weathercode;
       const ehDia = dados.current_weather.is_day === 1;
 
@@ -606,11 +659,74 @@ const url = servidor + '/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&
     }
   }
 
+  async function carregar7Dias(nome, lat, lon) {
+    const painel = document.getElementById('painel-7dias');
+    if (!painel) return;
+           const u = new URL('https://' + ['api', 'open-meteo', 'com'].join('.'));
+    u.pathname = '/v1/forecast';
+    u.search = `latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=America%2FSao_Paulo`;
+    const url = u.toString();
+
+
+    const diasSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+
+    try {
+      const resposta = await fetch(url);
+      const dados = await resposta.json();
+      const datas = dados.daily.time;
+      const maxs = dados.daily.temperature_2m_max;
+      const mins = dados.daily.temperature_2m_min;
+      const codigos = dados.daily.weathercode;
+
+      let html = `<strong>Previsão 7 dias (${nome}):</strong><br>`;
+      for (let i = 0; i < datas.length; i++) {
+        const partes = datas[i].split('-');
+        const dataObj = new Date(partes[0], partes[1] - 1, partes[2]);
+        const nomeDia = i === 0 ? 'Hoje' : diasSemana[dataObj.getDay()];
+        let icone = '☀️';
+        if (codigos[i] >= 1 && codigos[i] <= 3) icone = '⛅';
+        if (codigos[i] >= 51) icone = '🌧️';
+
+        html += `${icone} <b>${nomeDia}</b> (${partes[2]}/${partes[1]}): ${Math.round(mins[i])}° / ${Math.round(maxs[i])}°C<br>`;
+      }
+      painel.innerHTML = html;
+    } catch (erro) {
+      painel.innerHTML = 'Erro ao carregar previsão.';
+    }
+  }
+
+  function selecionarCidade() {
+    const select = document.getElementById('seletor-cidade');
+    const idx = select.value;
+    if (idx === '') return;
+    const [nome, lat, lon] = cidadesSergipe[idx];
+    buscarCidade(nome, lat, lon, 'clima-cidade-escolhida');
+    cidadeAtual7Dias = { nome, lat, lon };
+    const btn = document.querySelector('button[onclick="alternar7Dias()"]');
+    if (btn) btn.textContent = `📅 Próximos 7 dias (${nome})`;
+    const painel = document.getElementById('painel-7dias');
+    if (painel && painel.style.display === 'block') {
+      carregar7Dias(nome, lat, lon);
+    }
+  }
+
+  function alternar7Dias() {
+    const painel = document.getElementById('painel-7dias');
+    if (!painel) return;
+    if (painel.style.display === 'none') {
+      painel.style.display = 'block';
+      carregar7Dias(cidadeAtual7Dias.nome, cidadeAtual7Dias.lat, cidadeAtual7Dias.lon);
+    } else {
+      painel.style.display = 'none';
+    }
+  }
+
   function atualizarClima() {
     buscarCidade('Dores', -10.49, -37.19, 'clima-texto');
     buscarCidade('Aracaju', -10.94, -37.07, 'clima-aracaju');
   }
 
+  preencherListaCidades();
   atualizarClima();
 </script>
 </body>
