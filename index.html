@@ -590,11 +590,12 @@ const url = servidor + '/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&
     try {
       const resposta = await fetch(url);
       const dados = await resposta.json();
-      const temperatura = Math.round(dados.current_weather.temperature);
+            const temperatura = Math.round(dados.current_weather.temperature);
       const codigoClima = dados.current_weather.weathercode;
+      const ehDia = dados.current_weather.is_day === 1;
 
-      let icone = '☀️';
-      if (codigoClima >= 1 && codigoClima <= 3) icone = '⛅';
+      let icone = ehDia ? '☀️' : '🌙';
+      if (codigoClima >= 1 && codigoClima <= 3) icone = ehDia ? '⛅' : '☁️';
       if (codigoClima >= 51) icone = '🌧️';
 
       const elTexto = document.getElementById(idElemento);
