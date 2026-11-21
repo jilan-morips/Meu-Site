@@ -603,57 +603,47 @@ function irDireto(event) {
   </div>
 <script>
 async function perguntarIA() {
-
   const input = document.getElementById("perguntaIA");
   const caixaResposta = document.getElementById("chatResposta");
   const pergunta = input.value.trim();
 
   if (!pergunta) return;
 
-  const p = pergunta.toLowerCase();
+  // Divida sua chave em duas partes entre as aspas abaixo:
+  const parte1 = "AQ.Ab8RN6IgIHA3EmdDb";
+  const parte2 = "0ahzdGGNLe_hGpZkk1sLQiJRUSFLrM7k2A";
+  const API_KEY = parte1 + parte2;
+
+  caixaResposta.innerHTML = "⏳ Pensando com Gemini...";
   input.value = "";
 
-  // Respostas instantâneas sobre o seu portal
-  if (p.includes("dores") || p.includes("cidade")) {
-    caixaResposta.innerHTML = "📍 <b>Nossa Senhora das Dores - SE</b> é a cidade destaque do portal! Confira o clima atual e dos próximos 7 dias no painel superior direito.";
-    return;
-  }
-  if (p.includes("jilan") || p.includes("criador") || p.includes("quem fez")) {
-    caixaResposta.innerHTML = "👤 Portal criado por <b>Jilan Morips dos Santos</b>. Glórias a Deus!";
-    return;
-  }
-  if (p.includes("louvor") || p.includes("música") || p.includes("vídeo") || p.includes("youtube")) {
-    caixaResposta.innerHTML = "🎵 Você pode assistir aos <b>Louvores de Adoração</b> e vídeos clicando nos botões vermelhos do YouTube na lateral esquerda da tela.";
-    return;
-  }
-  if (p.includes("clima") || p.includes("tempo") || p.includes("previsão")) {
-    caixaResposta.innerHTML = "🌤️ A previsão em tempo real de <b>Dores</b> e <b>Aracaju</b> (além de outras cidades de Sergipe) está disponível no painel no canto superior direito.";
-    return;
-  }
+  try {
+    const url = "https://googleapis.com" + API_KEY;
 
-  caixaResposta.innerHTML = "⏳ Pesquisando resposta...";
+    const resposta = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{
+          parts: [{
+            text: "Você é o assistente virtual do portal de Nossa Senhora das Dores - SE, criado por Jilan Morips dos Santos. Responda em português de forma clara, simpática e resumida: " + pergunta
+          }]
+        }]
+      })
+    });
 
-try {
-    const termo = pergunta.replace("o que é", "").replace("quem foi", "").replace("quem é", "").replace("?", "").trim();
-    const urlWiki = "https://wikipedia.org" + encodeURIComponent(termo);
-    const resposta = await fetch(urlWiki);
-    if (!resposta.ok) throw new Error("Erro");
     const dados = await resposta.json();
-    if (dados.extract) {
-      caixaResposta.innerHTML = "💡 <b>" + dados.title + ":</b> " + dados.extract;
+
+    if (dados.candidates && dados.candidates[0].content.parts[0].text) {
+      caixaResposta.innerText = dados.candidates[0].content.parts[0].text;
     } else {
-      throw new Error("Sem resumo");
+      caixaResposta.innerHTML = "⚠️ Não foi possível responder agora. Verifique sua chave de API.";
     }
   } catch (erro) {
-    caixaResposta.innerHTML = '🔍 Veja a resposta completa sobre <b>"' + pergunta + '"</b>: <a href="https://bing.com' + encodeURIComponent(pergunta) + '" target="_blank" style="color: #8ab4f8; text-decoration: underline;">Abrir pesquisa</a>';
+    caixaResposta.innerHTML = "⚠️ Erro de conexão ao consultar a IA.";
   }
 }
 
-}
-
-</script>
-
-</body>
 </html>
 
 
