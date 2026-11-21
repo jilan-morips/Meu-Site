@@ -433,7 +433,7 @@ function irDireto(event) {
   if (texto.includes(".") && !texto.includes(" ")) {
     window.location.href = texto.startsWith("http") ? texto : "https://" + texto;
     } else {
-       window.location.href = "https://google.com" + encodeURIComponent(texto);
+       window.location.href = "https://google.com"/search?q= + encodeURIComponent(texto);
   }
 </script>
 
@@ -630,7 +630,7 @@ async function perguntarIA() {
 
   caixaResposta.innerHTML = "⏳ Pesquisando resposta...";
 
-  try {
+    try {
     const termo = pergunta.replace(/^(o que é|quem foi|quem é|me fale sobre|sobre|qual é|como funciona)\s+/i, "").replace(/\?/g, "").trim();
     const urlWiki = `https://wikipedia.org{encodeURIComponent(termo)}`;
     
@@ -646,6 +646,8 @@ async function perguntarIA() {
   } catch (erro) {
     caixaResposta.innerHTML = `🔍 Não encontrei um resumo direto para <b>"${pergunta}"</b>. <a href="https://google.com{encodeURIComponent(pergunta)}" target="_blank" style="color: #8ab4f8; text-decoration: underline;">Clique aqui para ver no Google</a>.`;
   }
+}
+
 }
 
 </script>
