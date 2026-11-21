@@ -600,7 +600,10 @@ function irDireto(event) {
     </button>
   </div>
 </div>
+  </div>
+<script>
 async function perguntarIA() {
+
   const input = document.getElementById("perguntaIA");
   const caixaResposta = document.getElementById("chatResposta");
   const pergunta = input.value.trim();
@@ -633,7 +636,7 @@ async function perguntarIA() {
   try {
     // Busca a resposta diretamente na Wikipédia em Português (100% gratuita e sem bloqueio)
     const termo = pergunta.replace(/^(o que é|quem foi|quem é|me fale sobre|sobre|qual é|como funciona)\s+/i, "").replace(/\?/g, "").trim();
-     const urlWiki = "https://pt.wikipedia.org" + encodeURIComponent(termo);
+     const urlWiki = "https://pt.wikipedia.org/api/rest_v1/page/summary/ + encodeURIComponent(termo);
 
     const resposta = await fetch(urlWiki);
     if (!resposta.ok) throw new Error("Não encontrado");
@@ -646,7 +649,7 @@ async function perguntarIA() {
     }
   } catch (erro) {
     // Se não achar resumo na Wikipédia, abre a pesquisa no Bing/Google sem erro
- aixaResposta.innerHTML = '🔍 Não encontrei um resumo direto para <b>"' + pergunta + '"</b>. <a href="https://bing.com' + encodeURIComponent(pergunta) + '" target="_blank" style="color: #8ab4f8; text-decoration: underline;">Clique aqui para ver a resposta completa</a>.';
+ aixaResposta.innerHTML = '🔍 Não encontrei um resumo direto para <b>"' + pergunta + '"</b>. <a href="https://bing.com/search?q=' + encodeURIComponent(pergunta) + '" target="_blank" style="color: #8ab4f8; text-decoration: underline;">Clique aqui para ver a resposta completa</a>.';
 }
 
 }
