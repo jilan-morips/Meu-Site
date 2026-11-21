@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <!-- saved from url=(0033)https://jilandoresse.netlify.app/ -->
 <html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- This site is hosted on Netlify. Anyone can build and deploy a site
@@ -618,7 +618,8 @@ async function perguntarIA() {
   input.value = "";
 
   try {
-    const url = "https://googleapis.com" + API_KEY;
+const u1 = "https://googleapis.com";
+    const url = u1 + "/v1beta/models/gemini-2.5-flash:generateContent?key=" + API_KEY;
 
     const resposta = await fetch(url, {
       method: "POST",
