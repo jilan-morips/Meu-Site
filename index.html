@@ -432,7 +432,7 @@ function irDireto(event) {
     window.location.href = texto.startsWith("http") ? texto : "https://" + texto;
   } else {
     // Procura e abre o 1º site oficial correspondente direto, sem passar pela tela do Google
-    window.location.href = "https://duckduckgo.com+" + encodeURIComponent(texto);
+    window.location.href = "https://duckduckgo.com+" + https://google.com);
   }
 }
 
@@ -602,25 +602,53 @@ function irDireto(event) {
 </div>
 
 <script>
-  async function perguntarIA() {
+ async function perguntarIA() {
   const input = document.getElementById("perguntaIA");
   const caixaResposta = document.getElementById("chatResposta");
   const pergunta = input.value.trim();
 
   if (!pergunta) return;
 
-  caixaResposta.innerHTML = "⏳ Pensando...";
+  const p = pergunta.toLowerCase();
   input.value = "";
 
+  // 1. Respostas rápidas instantâneas sobre o site e sua cidade (funciona até sem internet)
+  if (p.includes("dores") || p.includes("cidade")) {
+    caixaResposta.innerHTML = "📍 <b>Nossa Senhora das Dores - SE</b> é a cidade destaque do portal! Você pode conferir a previsão do tempo atual e dos próximos 7 dias no painel superior direito.";
+    return;
+  }
+  if (p.includes("jilan") || p.includes("criador") || p.includes("quem fez")) {
+    caixaResposta.innerHTML = "👤 Este portal foi criado por <b>Jilan Morips dos Santos</b>. Glórias a Deus!";
+    return;
+  }
+  if (p.includes("louvor") || p.includes("música") || p.includes("vídeo") || p.includes("youtube")) {
+    caixaResposta.innerHTML = "🎵 Você pode assistir aos <b>Louvores de Adoração</b> e vídeos clicando nos botões vermelhos do YouTube na lateral esquerda da tela.";
+    return;
+  }
+  if (p.includes("clima") || p.includes("tempo") || p.includes("previsão")) {
+    caixaResposta.innerHTML = "🌤️ A previsão em tempo real de <b>Dores</b> e <b>Aracaju</b> (além de outras cidades de Sergipe) está disponível no painel no canto superior direito.";
+    return;
+  }
+
+  // 2. Para qualquer outra pergunta, tenta a IA online e, se a rede bloquear, abre a resposta no Google
+  caixaResposta.innerHTML = "⏳ Buscando resposta...";
+
   try {
-    const prompt = encodeURIComponent(pergunta + " (Responda em português de forma clara e curta)");
-    const resposta = await fetch(`https://pollinations.ai{prompt}?model=openai&seed=${Math.floor(Math.random() * 1000)}`);
-    
-    if (!resposta.ok) throw new Error("Falha na API");
-    
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 4000); // espera no máximo 4 segundos
+
+    const prompt = encodeURIComponent(pergunta + " (Responda em português de forma curta)");
+    const resposta = await fetch(`https://pollinations.ai{prompt}`, { signal: controller.signal });
+    clearTimeout(timeoutId);
+
+    if (!resposta.ok) throw new Error("Bloqueado");
     const texto = await resposta.text();
     caixaResposta.innerText = texto;
   } catch (erro) {
+    caixaResposta.innerHTML = `🔍 Para ver a resposta completa sobre <b>"${pergunta}"</b>, <a href="https://google.com{encodeURIComponent(pergunta)}" target="_blank" style="color: #8ab4f8; text-decoration: underline;">clique aqui para abrir no Google</a>.`;
+  }
+}
+
     // Plano B automático: busca a resposta direto no Google se a API gratuita estiver fora do ar
     caixaResposta.innerHTML = `⚠️ A IA gratuita está ocupada no momento. <a href="https://google.com{encodeURIComponent(pergunta)}" target="_blank" style="color: #8ab4f8; text-decoration: underline;">Clique aqui para ver a resposta no Google</a>.`;
   }
