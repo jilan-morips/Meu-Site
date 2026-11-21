@@ -432,8 +432,8 @@ function irDireto(event) {
     window.location.href = texto.startsWith("http") ? texto : "https://" + texto;
   } else {
     // Procura e abre o 1º site oficial correspondente direto, sem passar pela tela do Google
-    window.location.href = "https://duckduckgo.com+" + https://google.com);
-  }
+       window.location.href = "https://google.com"/search?q= + encodeURIComponent(texto);
+
 }
 
 </script>
@@ -602,7 +602,7 @@ function irDireto(event) {
 </div>
 
 <script>
- async function perguntarIA() {
+async function perguntarIA() {
   const input = document.getElementById("perguntaIA");
   const caixaResposta = document.getElementById("chatResposta");
   const pergunta = input.value.trim();
@@ -612,7 +612,6 @@ function irDireto(event) {
   const p = pergunta.toLowerCase();
   input.value = "";
 
-  // 1. Respostas rápidas instantâneas sobre o site e sua cidade (funciona até sem internet)
   if (p.includes("dores") || p.includes("cidade")) {
     caixaResposta.innerHTML = "📍 <b>Nossa Senhora das Dores - SE</b> é a cidade destaque do portal! Você pode conferir a previsão do tempo atual e dos próximos 7 dias no painel superior direito.";
     return;
@@ -630,12 +629,11 @@ function irDireto(event) {
     return;
   }
 
-  // 2. Para qualquer outra pergunta, tenta a IA online e, se a rede bloquear, abre a resposta no Google
   caixaResposta.innerHTML = "⏳ Buscando resposta...";
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4000); // espera no máximo 4 segundos
+    const timeoutId = setTimeout(() => controller.abort(), 4000);
 
     const prompt = encodeURIComponent(pergunta + " (Responda em português de forma curta)");
     const resposta = await fetch(`https://pollinations.ai{prompt}`, { signal: controller.signal });
@@ -648,13 +646,9 @@ function irDireto(event) {
     caixaResposta.innerHTML = `🔍 Para ver a resposta completa sobre <b>"${pergunta}"</b>, <a href="https://google.com{encodeURIComponent(pergunta)}" target="_blank" style="color: #8ab4f8; text-decoration: underline;">clique aqui para abrir no Google</a>.`;
   }
 }
+</script>
 
-    // Plano B automático: busca a resposta direto no Google se a API gratuita estiver fora do ar
-    caixaResposta.innerHTML = `⚠️ A IA gratuita está ocupada no momento. <a href="https://google.com{encodeURIComponent(pergunta)}" target="_blank" style="color: #8ab4f8; text-decoration: underline;">Clique aqui para ver a resposta no Google</a>.`;
-  }
-}
-
-      
 </body>
 </html>
+
 
