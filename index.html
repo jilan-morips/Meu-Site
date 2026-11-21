@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://jilandoresse.netlify.app/ -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=b7df8041-f98f-4a10-82e6-e57dde820ce0
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+  
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=544ea977-6acb-43e9-8579-bf770812112e
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+  <meta name="viewport" content="width=1280">
+
+  <title>1° Site - Jilan Morips dos Santos</title>
+  <style>
+    body {
+        background-image: url('dores 5.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 15px 0 15px 30px;
+    }
+
+    .titulo-cidade {
+      position: fixed;
+      top: 25px;
+      right: 35px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 26px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      margin: 0;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      margin: 0;
+    }
+
+    .cartao {
+
+  background-color: transparent;
+
+  
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 12px;
+ box-shadow: none;
+  text-align: center;
+  max-width: 210px;
+  width: 90%;
+}
+
+img {
+  width: 75%;
+  max-height: 85px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 8px;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: 16px;
+  color: #ffffff;
+  margin: 6px 0;
+}
+
+p {
+  color: #f1f5f9;
+  font-size: 13px;
+  margin: 6px 0;
+}
+
+    .link-rio {
+      display: inline-block;
+      margin: 10px 0;
+      color: #2563eb;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    .botao {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    .botao:hover {
+      background-color: #1d4ed8;
+    }
+
+    .caixa-video {
+  width: 75%;
+  margin: 22px auto 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+    .caixa-video:hover {
+      transform: scale(1.03);
+    
+}
+    .link-youtube {
+      display: block;
+      background-color: #dc2626;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px;
+      font-size: 13px;
+      transition: background-color 0.3s ease;
+    }
+
+    .link-youtube:hover {
+      background-color: #991b1b;
+    }
+ /* Foto da Árvore Real com Estrelas Piscando */
+.arvore-foto-box {
+    position: fixed;
+    right: 30px;
+    bottom: 20px;
+    width: 150px;
+    height: 150px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+
+.cartao .arvore-foto-box img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: none !important;
+    object-fit: cover;
+    display: block;
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
+.estrela-pisca {
+    position: absolute;
+    color: #fffbe6;
+   font-size: 28px;
+    text-shadow: 0 0 8px #ffffff, 0 0 15px #ffd700, 0 0 22px #ffae00;
+    pointer-events: none;
+    animation: brilhar-real 1s infinite alternate ease-in-out;
+}
+
+.e1  { top: 12%; left: 48%; font-size: 20px; animation-duration: 0.8s; }
+.e2  { top: 22%; left: 44%; animation-delay: 0.2s; }
+.e3  { top: 28%; left: 53%; animation-delay: 0.5s; }
+.e4  { top: 35%; left: 41%; animation-delay: 0.1s; }
+.e5  { top: 38%; left: 56%; font-size: 18px; animation-delay: 0.7s; }
+.e6  { top: 45%; left: 47%; animation-delay: 0.3s; }
+.e7  { top: 48%; left: 36%; animation-delay: 0.6s; }
+.e8  { top: 52%; left: 60%; animation-delay: 0.4s; }
+.e9  { top: 58%; left: 43%; font-size: 19px; animation-delay: 0.8s; }
+.e10 { top: 60%; left: 54%; animation-delay: 0.2s; }
+.e11 { top: 65%; left: 32%; animation-delay: 0.5s; }
+.e12 { top: 68%; left: 65%; animation-delay: 0.1s; }
+.e13 { top: 72%; left: 49%; font-size: 18px; animation-delay: 0.6s; }
+.e14 { top: 75%; left: 26%; animation-delay: 0.3s; }
+.e15 { top: 76%; left: 72%; animation-delay: 0.7s; }
+
+@keyframes brilhar-real {
+    0% { opacity: 0.15; transform: scale(0.6) rotate(0deg); }
+    100% { opacity: 1; transform: scale(1.25) rotate(25deg); }
+}
+/* Título Natal em Dores/SE na base da árvore */
+.titulo-natal-arvore {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 22px 10px 12px 10px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+    color: #fffbe6;
+    font-family: 'Georgia', serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), 0 0 12px #ffd700;
+    box-sizing: border-box;
+    pointer-events: none;
+    z-index: 10;
+}
+/* Campo de Pesquisa Central Estilo Google */
+.caixa-pesquisa {
+    position: fixed;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 560px;
+    max-width: 90%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.96);
+    padding: 6px 8px 6px 20px;
+    border-radius: 50px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+}
+
+.caixa-pesquisa input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 10px 5px;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+}
+
+.caixa-pesquisa button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 22px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.caixa-pesquisa button:hover {
+    background-color: #1d4ed8;
+}
+.trilho-noel {
+  position: absolute;
+  bottom: 100%;
+  left: 20px;
+  right: 20px;
+  height: 85px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.papai-noel {
+  font-size: 70px;
+  position: absolute;
+  bottom: 0;
+  animation: andarNoel 8s linear infinite, balancar 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes andarNoel {
+  0% { left: -80px; }
+  100% { left: 100%; }
+}
+
+@keyframes balancar {
+  0% { transform: translateY(0px) rotate(-5deg); }
+  100% { transform: translateY(-6px) rotate(5deg); }
+}
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px;
+    overflow-x: hidden;
+  }
+
+  .titulo-cidade {
+    position: static;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+  }
+
+  .cartao {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 20px 0;
+    box-sizing: border-box;
+  }
+
+  .caixa-pesquisa {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    transform: none;
+    margin: 15px 0;
+    box-sizing: border-box;
+  }
+
+  .arvore-foto-box {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 15px 0;
+    box-sizing: border-box;
+  }
+
+  .arvore-foto-box img {
+    width: 100%;
+    height: auto;
+  }
+}
+.fundo-slideshow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.slide.ativo {
+  opacity: 1;
+}
+</style>
+   </head><body><div id="clima-box" style="position: fixed; top: 88px; right: 35px; background-color: rgba(0, 0, 0, 0.6); color: white; padding: 10px 18px; border-radius: 12px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); z-index: 1000;">
+        <span id="clima-texto">Clima indisponível</span>
+    <br>
+    <span id="clima-aracaju" style="display: inline-block; margin-top: 6px;">Carregando Aracaju...</span>
+
+  </div>
+
+
+  <h2 class="titulo-cidade">NOSSA SENHORA DAS DORES - SE</h2>
+  
+<div class="fundo-slideshow">
+  <div class="slide ativo" style="background-image: url('foto 1.jpg');"></div>
+  <div class="slide" style="background-image: url('foto 2.jpg');"></div>
+  <div class="slide" style="background-image: url('foto 3.jpg');"></div>
+</div>
+ <div class="cartao">
+    <form class="caixa-pesquisa" onsubmit="irDireto(event)">
+      <div class="trilho-noel">
+        <div class="papai-noel">🎅</div>
+      </div>
+      <input type="text" id="termoDireto" placeholder="Digite o site ou assunto (ex: uol, globo, youtube)..." required="">
+      <button type="submit">🔍</button>
+    </form>
+    <img src="images.jpeg" alt="Cavalos no pasto">
+    <h1> Jilan Morips dos santos</h1>
+    <p>Glórias a Deus</p>
+    
+   <a class="link-rio" href="https://jilanmorips.netlify.app/pagina2">Cidade</a>
+    <br>
+  <div class="arvore-foto-box">
+<img src="arvore.jpeg" alt="Arvore de Natal">
+    <span class="estrela-pisca e1">✦</span>
+    <span class="estrela-pisca e2">✦</span>
+    <span class="estrela-pisca e3">✦</span>
+    <span class="estrela-pisca e4">✦</span>
+    <span class="estrela-pisca e5">✦</span>
+    <span class="estrela-pisca e6">✦</span>
+    <span class="estrela-pisca e7">✦</span>
+    <span class="estrela-pisca e8">✦</span>
+    <span class="estrela-pisca e9">✦</span>
+    <span class="estrela-pisca e10">✦</span>
+    <span class="estrela-pisca e11">✦</span>
+    <span class="estrela-pisca e12">✦</span>
+    <span class="estrela-pisca e13">✦</span>
+    <span class="estrela-pisca e14">✦</span>
+    <span class="estrela-pisca e15">✦</span>
+<div class="titulo-natal-arvore">Natal em Dores/SE</div>    
+</div>
+
+    <div class="caixa-video">
+      <a href="https://youtube.com/watch?v=5PCWqlQyYj4" target="_blank" style="text-decoration: none; display: block;">
+        <img src="louvor.jpg" alt="Louvores de Adoração" style="width: 100%; display: block; margin: 0; border-radius: 0;">
+        <span class="link-youtube">
+          ▶ Assistir Louvores de Adoração no YouTube
+        </span>
+      </a>
+    </div>
+  <div class="caixa-video">
+      <a href="https://youtube.com/watch?v=rokJhj42s2M" target="_blank" style="text-decoration: none; display: block;">
+        <img src="dores 7.jpeg" alt="Assistir Vídeo" style="width: 100%; display: block; margin: 0; border-radius: 5px 5px 0 0;">
+
+        <span class="link-youtube">
+          ▶ Assistir Vídeo no YouTube
+        </span>
+      </a>
+    </div>
+ <script>
+  function irDireto(event) {
+    event.preventDefault();
+    let texto = document.getElementById('termoDireto').value.trim().toLowerCase();
+
+    // E-mails e Portais Gerais
+    if (texto.includes("outlook") || texto.includes("hotmail")) {
+      window.location.href = "https://live.com";
+    } else if (texto.includes("msn")) {
+      window.location.href = "https://msn.com";
+    } else if (texto.includes("uol")) {
+      window.location.href = "https://uol.com.br";
+    } else if (texto.includes("youtube")) {
+      window.location.href = "https://youtube.com";
+    } else if (texto.includes("reclame aqui") || texto.includes("reclameaqui")) {
+      window.location.href = "https://reclameaqui.com.br";
+
+    // Serviços Públicos e Saneamento (Sergipe)
+    } else if (texto.includes("deso")) {
+      window.location.href = "https://www.deso-se.com.br";
+
+    // Supermercados, Atacadistas e Lojas
+    } else if (texto.includes("gbarbosa") || texto.includes("g barbosa")) {
+      window.location.href = "https://www.gbarbosa.com.br";
+    } else if (texto.includes("assai") || texto.includes("assaí") || texto.includes("acai") || texto.includes("açai") || texto.includes("açaí")) {
+      window.location.href = "https://www.assai.com.br";
+    } else if (texto.includes("atacadao") || texto.includes("atacadão")) {
+      window.location.href = "https://atacadao.com.br";
+    } else if (texto.includes("carrefour") || texto.includes("carrefor")) {
+      window.location.href = "https://carrefour.com.br";
+    } else if (texto.includes("magalu") || texto.includes("magazine luiza")) {
+      window.location.href = "https://magazineluiza.com.br";
+    } else if (texto.includes("olx")) {
+      window.location.href = "https://olx.com.br";
+    } else if (texto.includes("shopee") || texto.includes("shope")) {
+      window.location.href = "https://shopee.com.br";
+    } else if (texto.includes("mercado livre") || texto.includes("mercadolivre") || texto.includes("mercado lvre")) {
+      window.location.href = "https://mercadolivre.com.br";
+    } else if (texto.includes("amazon")) {
+      window.location.href = "https://amazon.com.br";
+
+    // Crédito, Empréstimos e Consulta de CPF
+    } else if (texto.includes("crefisa")) {
+      window.location.href = "https://crefisa.com.br";
+    } else if (texto.includes("creditas") || texto.includes("credita")) {
+      window.location.href = "https://creditas.com";
+    } else if (texto.includes("simplic")) {
+      window.location.href = "https://simplic.com.br";
+    } else if (texto.includes("serasa")) {
+      window.location.href = "https://serasa.com.br";
+
+    // Operadoras de Telefonia e Internet
+    } else if (texto.includes("vivo")) {
+      window.location.href = "https://vivo.com.br";
+    } else if (texto.includes("claro")) {
+      window.location.href = "https://claro.com.br";
+    } else if (texto === "tim") {
+      window.location.href = "https://tim.com.br";
+    } else if (texto === "oi") {
+      window.location.href = "https://oi.com.br";
+
+    // Bancos Tradicionais e Regionais
+    } else if (texto.includes("banese")) {
+      window.location.href = "https://www.banese.com.br";
+    } else if (texto.includes("banco do brasil") || texto === "bb") {
+      window.location.href = "https://bb.com.br";
+    } else if (texto.includes("caixa")) {
+      window.location.href = "https://caixa.gov.br";
+    } else if (texto.includes("bradesco")) {
+      window.location.href = "https://banco.bradesco";
+    } else if (texto.includes("itau") || texto.includes("itaú")) {
+      window.location.href = "https://itau.com.br";
+    } else if (texto.includes("santander")) {
+      window.location.href = "https://santander.com.br";
+    } else if (texto.includes("banco do nordeste") || texto === "bnb") {
+      window.location.href = "https://bnb.gov.br";
+    } else if (texto.includes("sicredi")) {
+      window.location.href = "https://sicredi.com.br";
+    } else if (texto.includes("sicoob")) {
+      window.location.href = "https://sicoob.com.br";
+    } else if (texto.includes("safra")) {
+      window.location.href = "https://safra.com.br";
+    } else if (texto.includes("banrisul")) {
+      window.location.href = "https://banrisul.com.br";
+
+    // Bancos Digitais e Corretoras
+    } else if (texto.includes("nubank") || texto.includes("nunbak")) {
+      window.location.href = "https://nubank.com.br";
+    } else if (texto.includes("inter")) {
+      window.location.href = "https://inter.co";
+    } else if (texto.includes("c6")) {
+      window.location.href = "https://c6bank.com.br";
+    } else if (texto.includes("picpay")) {
+      window.location.href = "https://picpay.com";
+    } else if (texto.includes("pagbank") || texto.includes("pagseguro")) {
+      window.location.href = "https://pagbank.com.br";
+    } else if (texto.includes("mercado pago") || texto.includes("mercadopago")) {
+      window.location.href = "https://mercadopago.com.br";
+    } else if (texto.includes("neon")) {
+      window.location.href = "https://neon.com.br";
+    } else if (texto.includes("next")) {
+      window.location.href = "https://next.me";
+    } else if (texto.includes("original")) {
+      window.location.href = "https://original.com.br";
+    } else if (texto.includes("pan")) {
+      window.location.href = "https://bancopan.com.br";
+    } else if (texto.includes("bmg")) {
+      window.location.href = "https://bancobmg.com.br";
+    } else if (texto.includes("will")) {
+      window.location.href = "https://willbank.com.br";
+    } else if (texto.includes("btg")) {
+      window.location.href = "https://btgpactual.com";
+    } else if (texto.includes("xp")) {
+      window.location.href = "https://xpi.com.br";
+
+    // Concursos Públicos, Questões e Bancas
+    } else if (texto.includes("cebraspe") || texto.includes("cebrapes") || texto.includes("cespe")) {
+      window.location.href = "https://cebraspe.org.br";
+    } else if (texto.includes("gran")) {
+      window.location.href = "https://grancursosonline.com.br";
+    } else if (texto.includes("folha dirigida") || texto.includes("fola dirigida") || texto.includes("folhadirigida")) {
+      window.location.href = "https://qconcursos.com";
+    } else if (texto.includes("qconcursos") || texto.includes("q questoes") || texto.includes("q questões") || texto.includes("questoes")) {
+      window.location.href = "https://qconcursos.com";
+    } else if (texto.includes("tec")) {
+      window.location.href = "https://tecconcursos.com.br";
+    } else if (texto.includes("estrategia") || texto.includes("estratégia")) {
+      window.location.href = "https://estrategiaconcursos.com.br";
+    } else if (texto.includes("direcao") || texto.includes("direção")) {
+      window.location.href = "https://direcaoconcursos.com.br";
+    } else if (texto.includes("pci")) {
+      window.location.href = "https://pciconcursos.com.br";
+    } else if (texto.includes("jc concursos") || texto.includes("jcconcursos")) {
+      window.location.href = "https://jcconcursos.com.br";
+    } else if (texto.includes("fgv")) {
+      window.location.href = "https://fgv.br";
+    } else if (texto.includes("fcc")) {
+      window.location.href = "https://concursosfcc.com.br";
+    } else if (texto.includes("vunesp")) {
+      window.location.href = "https://vunesp.com.br";
+
+    // Sites de Notícias (Nacionais e Sergipe)
+    } else if (texto.includes("o globo") || texto.includes("oglobo")) {
+      window.location.href = "https://globo.com";
+    } else if (texto.includes("globo") || texto.includes("g1")) {
+      window.location.href = "https://globo.com";
+    } else if (texto.includes("nen noticias") || texto.includes("nen notícias") || texto.includes("ne noticias") || texto.includes("ne notícias") || texto.includes("nenoticias")) {
+      window.location.href = "https://nenoticias.com.br";
+    } else if (texto.includes("infonet")) {
+      window.location.href = "https://infonet.com.br";
+    } else if (texto.includes("cnn")) {
+      window.location.href = "https://cnnbrasil.com.br";
+    } else if (texto.includes("r7")) {
+      window.location.href = "https://r7.com";
+    } else if (texto.includes("terra")) {
+      window.location.href = "https://terra.com.br";
+    } else if (texto.includes("metropoles") || texto.includes("metrópoles")) {
+      window.location.href = "https://metropoles.com";
+    } else if (texto.includes("f5 news") || texto.includes("f5news")) {
+      window.location.href = "https://f5news.com.br";
+    } else if (texto.includes("noticias") || texto.includes("notícias")) {
+      window.location.href = "https://news.google.com";
+
+    // Pesquisa padrão no Google caso não esteja na lista
+        } else if (texto !== "") {
+      window.location.href = "https://google.com" + encodeURIComponent(texto);
+    }
+  }
+</script>
+
+<script>
+  async function buscarCidade(nome, lat, lon, idElemento) {
+    const servidor = 'https://' + 'api' + '.open-meteo.com';
+const url = servidor + '/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current_weather=true';
+
+
+    try {
+      const resposta = await fetch(url);
+      const dados = await resposta.json();
+      const temperatura = Math.round(dados.current_weather.temperature);
+      const codigoClima = dados.current_weather.weathercode;
+
+      let icone = '☀️';
+      if (codigoClima >= 1 && codigoClima <= 3) icone = '⛅';
+      if (codigoClima >= 51) icone = '🌧️';
+
+      const elTexto = document.getElementById(idElemento);
+      if (elTexto) elTexto.textContent = `${icone} ${nome} agora: ${temperatura}°C`;
+    } catch (erro) {
+      const elTexto = document.getElementById(idElemento);
+      if (elTexto) elTexto.textContent = `${nome}: indisponível`;
+    }
+  }
+
+  function atualizarClima() {
+    buscarCidade('Dores', -10.49, -37.19, 'clima-texto');
+    buscarCidade('Aracaju', -10.94, -37.07, 'clima-aracaju');
+  }
+
+  atualizarClima();
+</script>
+</body>
+</html>
