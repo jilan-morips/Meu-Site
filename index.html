@@ -613,7 +613,7 @@ function irDireto(event) {
     input.value = "";
 
     try {
-      const resposta = await fetch("https://pollinations.ai" + encodeURIComponent(pergunta + " (Responda em português de forma clara e direta)"));
+        const resposta = await fetch("https://pollinations.ai" + encodeURIComponent(pergunta + " (Responda em português de forma clara e direta)"));
       const texto = await resposta.text();
       caixaResposta.innerText = texto;
     } catch (erro) {
