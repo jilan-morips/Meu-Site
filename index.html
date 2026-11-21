@@ -433,7 +433,8 @@ function irDireto(event) {
   if (texto.includes(".") && !texto.includes(" ")) {
     window.location.href = texto.startsWith("http") ? texto : "https://" + texto;
     } else {
-       window.location.href = "https://://bing.com"/search?q"= + encodeURIComponent(texto);
+         window.location.href = "https://bing.com/search?q=" + encodeURIComponent(texto);
+
   }
 </script>
 
@@ -599,8 +600,6 @@ function irDireto(event) {
     </button>
   </div>
 </div>
-
-<script>
 async function perguntarIA() {
   const input = document.getElementById("perguntaIA");
   const caixaResposta = document.getElementById("chatResposta");
@@ -611,6 +610,7 @@ async function perguntarIA() {
   const p = pergunta.toLowerCase();
   input.value = "";
 
+  // Respostas instantâneas sobre o seu portal
   if (p.includes("dores") || p.includes("cidade")) {
     caixaResposta.innerHTML = "📍 <b>Nossa Senhora das Dores - SE</b> é a cidade destaque do portal! Confira o clima atual e dos próximos 7 dias no painel superior direito.";
     return;
@@ -630,9 +630,10 @@ async function perguntarIA() {
 
   caixaResposta.innerHTML = "⏳ Pesquisando resposta...";
 
-    try {
+  try {
+    // Busca a resposta diretamente na Wikipédia em Português (100% gratuita e sem bloqueio)
     const termo = pergunta.replace(/^(o que é|quem foi|quem é|me fale sobre|sobre|qual é|como funciona)\s+/i, "").replace(/\?/g, "").trim();
-    const urlWiki = `https://wikipedia.org{encodeURIComponent(termo)}`;
+        const urlWiki = "https://wikipedia.org" + encodeURIComponent(termo);
     
     const resposta = await fetch(urlWiki);
     if (!resposta.ok) throw new Error("Não encontrado");
@@ -644,7 +645,12 @@ async function perguntarIA() {
       throw new Error("Sem resumo");
     }
   } catch (erro) {
-    caixaResposta.innerHTML = `🔍 Não encontrei um resumo direto para <b>"${pergunta}"</b>. <a href="https://google.com{encodeURIComponent(pergunta)}" target="_blank" style="color: #8ab4f8; text-decoration: underline;">Clique aqui para ver no Google</a>.`;
+    // Se não achar resumo na Wikipédia, abre a pesquisa no Bing/Google sem erro
+    caixaResposta.innerHTML = `🔍 Não encontrei um resumo direto para <b>"${pergunta}"</b>. <a href="https://bing.com{encodeURIComponent(pergunta)}" target="_blank" style="color: #8ab4f8; text-decoration: underline;">Clique aqui para ver a resposta completa</a>.`;
+  }
+}
+
+
   }
 }
 
