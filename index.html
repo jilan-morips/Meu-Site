@@ -603,24 +603,29 @@ function irDireto(event) {
 
 <script>
   async function perguntarIA() {
-    const input = document.getElementById("perguntaIA");
-    const caixaResposta = document.getElementById("chatResposta");
-    const pergunta = input.value.trim();
+  const input = document.getElementById("perguntaIA");
+  const caixaResposta = document.getElementById("chatResposta");
+  const pergunta = input.value.trim();
 
-    if (!pergunta) return;
+  if (!pergunta) return;
 
-    caixaResposta.innerHTML = "⏳ Pensando...";
-    input.value = "";
+  caixaResposta.innerHTML = "⏳ Pensando...";
+  input.value = "";
 
-    try {
-        const resposta = await fetch("https://pollinations.ai" + encodeURIComponent(pergunta + " (Responda em português de forma clara e direta)"));
-      const texto = await resposta.text();
-      caixaResposta.innerText = texto;
-    } catch (erro) {
-      caixaResposta.innerHTML = "❌ Não foi possível conectar à IA agora. Tente novamente.";
-    }
+  try {
+    const prompt = encodeURIComponent(pergunta + " (Responda em português de forma clara e curta)");
+    const resposta = await fetch(`https://pollinations.ai{prompt}?model=openai&seed=${Math.floor(Math.random() * 1000)}`);
+    
+    if (!resposta.ok) throw new Error("Falha na API");
+    
+    const texto = await resposta.text();
+    caixaResposta.innerText = texto;
+  } catch (erro) {
+    // Plano B automático: busca a resposta direto no Google se a API gratuita estiver fora do ar
+    caixaResposta.innerHTML = `⚠️ A IA gratuita está ocupada no momento. <a href="https://google.com{encodeURIComponent(pergunta)}" target="_blank" style="color: #8ab4f8; text-decoration: underline;">Clique aqui para ver a resposta no Google</a>.`;
   }
-</script>
+}
+
       
 </body>
 </html>
