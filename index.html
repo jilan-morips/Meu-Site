@@ -431,12 +431,9 @@ function irDireto(event) {
   // Se você já digitou um endereço com ponto (ex: g1.com.br), abre direto
   if (texto.includes(".") && !texto.includes(" ")) {
     window.location.href = texto.startsWith("http") ? texto : "https://" + texto;
-  } else {
-    // Procura e abre o 1º site oficial correspondente direto, sem passar pela tela do Google
-       window.location.href = "https://google.com"/search?q= + encodeURIComponent(texto);
-
-}
-
+    } else {
+       window.location.href = "https://google.com" + encodeURIComponent(texto);
+  }
 </script>
 
 <script>
