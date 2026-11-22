@@ -209,19 +209,26 @@ p {
 .caixa-pesquisa {
   position: fixed;
   top: 48%;
-  left: 48%;
+  left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
-  max-width: 600px;
+  max-width: 480px; /* Tamanho reduzido para alinhar com a IA */
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 30px;
+  padding: 5px 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   z-index: 20;
 }
 
 /* Adaptação automática para telas grandes (TV) */
 @media (min-width: 1920px) {
   .caixa-pesquisa {
-    max-width: 900px;
+    max-width: 720px; /* Aumenta proporcionalmente na TV */
   }
 }
+
 
 
 .caixa-pesquisa input {
