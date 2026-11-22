@@ -619,10 +619,9 @@ async function perguntarIA() {
   caixaResposta.innerHTML = "⏳ Pensando com Gemini...";
   input.value = "";
 
-  try {
-    const p1 = "https://generative";
-    const p2 = "://googleapis.com";
-    const p3 = "/v1beta/models/gemini-2.5-flash:generateContent?key=";
+    const p1 = "https://aiplatform";
+    const p2 = ".googleapis.com";
+    const p3 = "/v1/publishers/google/models/gemini-2.5-flash:generateContent?key=";
     const url = p1 + p2 + p3 + chave;
 
     const resposta = await fetch(url, {
@@ -630,17 +629,17 @@ async function perguntarIA() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         contents: [{
+          role: "user",
           parts: [{
             text: "Você é o assistente do portal de Nossa Senhora das Dores - SE, criado por Jilan Morips dos Santos. Responda em português de forma clara, simpática e resumida: " + pergunta
           }]
         }]
       })
     });
+ const dados = await resposta.json();
+    if (dados.candidates && dados.candidates[0].content.parts[0].text) {
+      caixaResposta.innerText = dados.candidates[0].content.parts[0].text;
 
-    const dados = await resposta.json();
-
-    if (dados.candidates && dados.candidates.content.parts.text) {
-      caixaResposta.innerText = dados.candidates.content.parts.text;
     } else if (dados.error) {
       caixaResposta.innerText = "Aviso do Google: " + dados.error.message;
     } else {
