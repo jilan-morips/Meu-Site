@@ -651,8 +651,8 @@ function irDireto(event) {
  messages: [
  {
   role: "system",
-              content: "Você é o assistente virtual do portal de Nossa Senhora das Dores - SE, criado por Jilan Morips dos Santos. Sempre que o usuário perguntar sobre empresas, notícias, pessoas ou fatos atuais (mesmo que digite apenas uma palavra ou com pequeno erro de ortografia, como 'sabespe' para Sabesp), use obrigatoriamente a ferramenta browser_search para pesquisar na web e responda em português de forma clara, direta e sem asteriscos."
-
+            content: "Você é o assistente virtual do portal de Nossa Senhora das Dores - SE, criado por Jilan Morips dos Santos. Sempre que o usuário pedir um site ou pesquisar sobre empresas, órgãos públicos ou serviços (mesmo com pequeno erro de digitação), use obrigatoriamente a ferramenta browser_search para pesquisar na web, responda em português de forma clara e sem asteriscos, e SEMPRE inclua o link oficial completo começando com https:// para o usuário clicar e acessar."
+       
  },
  {
    role: "user",
@@ -664,8 +664,11 @@ function irDireto(event) {
 
     const dados = await resposta.json();
 
-    if (dados.choices && dados.choices[0].message.content) {
-      caixaResposta.innerText = dados.choices[0].message.content;
+        if (dados.choices && dados.choices[0].message.content) {
+      let texto = dados.choices[0].message.content;
+      texto = texto.replace(/(https?:\/\/[^\s\)\]]+)/g, '<br><a href="$1" target="_blank" style="display:inline-block; margin-top:6px; padding:6px 12px; background:#8ab4f8; color:#000; font-weight:bold; border-radius:14px; text-decoration:none;">🔗 Abrir site: $1</a><br>');
+      caixaResposta.innerHTML = texto.replace(/\n/g, "<br>");
+
     } else if (dados.error) {
       caixaResposta.innerText = "Aviso: " + dados.error.message;
     } else {
