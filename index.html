@@ -602,7 +602,7 @@ function irDireto(event) {
     </div>
   </div>
 </div>
-
+</script>
 <script>
  async function perguntarIA() {
   const input = document.getElementById("perguntaIA");
@@ -653,6 +653,7 @@ function irDireto(event) {
       caixaResposta.innerText = "Aviso: " + dados.error.message;
     } else {
       caixaResposta.innerHTML = "⚠️ Não foi possível responder agora.";
+         }
     } catch (erro) {
     caixaResposta.innerText = "⚠️ Erro de conexão: " + erro.message;
   }
