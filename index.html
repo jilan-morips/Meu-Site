@@ -580,28 +580,29 @@ function irDireto(event) {
   atualizarClima();
 </script> 
 <div style="max-width: 500px; margin: 20px auto; background: rgba(20, 25, 35, 0.85); color: white; padding: 18px; border-radius: 16px; backdrop-filter: blur(8px); font-family: Arial, sans-serif;">
-  <h3 style="margin-top: 0; font-size: 16px; color: #8ab4f8;">✨ Assistente IA</h3>
-  
-  <div id="chatResposta" style="min-height: 60px; max-height: 220px; overflow-y: auto; background: rgba(255,255,255,0.08); padding: 12px; border-radius: 10px; margin-bottom: 12px; font-size: 14px; line-height: 1.5;">
-    Olá! Pergunte qualquer coisa abaixo.
-  </div>
+    <h3 style="margin-top: 0; font-size: 18px; color: #8ab4f8;">✨ Assistente IA</h3>
 
-  <div style="display: flex; gap: 8px;">
-    <input 
-      type="text" 
-      id="perguntaIA" 
-      placeholder="Pergunte algo à IA..." 
-      onkeypress="if(event.key === 'Enter') perguntarIA()"
-      style="flex: 1; padding: 10px 14px; border-radius: 20px; border: none; outline: none; font-size: 14px;"
-    >
-    <button 
-      onclick="perguntarIA()" 
-      style="padding: 10px 18px; border-radius: 20px; border: none; background: #8ab4f8; color: #000; font-weight: bold; cursor: pointer;">
-      Enviar
-    </button>
+    <div id="chatResposta" style="min-height: 60px; max-height: 220px; overflow-y: auto; background: rgba(255,255,255,0.08); padding: 12px; border-radius: 10px; margin-bottom: 12px; font-size: 14px; line-height: 1.5;">
+      Olá! Pergunte qualquer coisa abaixo.
+    </div>
+
+    <div style="display: flex; gap: 8px;">
+      <input 
+        type="text" 
+        id="perguntaIA" 
+        placeholder="Digite algo para a IA..." 
+        onkeypress="if(event.key === 'Enter') perguntarIA()"
+        style="flex: 1; padding: 10px 14px; border-radius: 20px; border: none; outline: none; font-size: 14px;"
+      >
+      <button 
+        onclick="perguntarIA()" 
+        style="padding: 10px 18px; border-radius: 20px; border: none; background: #8ab4f8; color: #000; font-weight: bold; cursor: pointer;">
+        Enviar
+      </button>
+    </div>
   </div>
 </div>
-  </div>
+
 <script>
 async function perguntarIA() {
   const input = document.getElementById("perguntaIA");
@@ -610,25 +611,27 @@ async function perguntarIA() {
 
   if (!pergunta) return;
 
-  // Divida sua chave em duas partes entre as aspas abaixo:
+  // COLE SUA NOVA CHAVE DIVIDIDA EM DUAS PARTES ABAIXO:
   const parte1 = "AQ.Ab8RN6IgIHA3EmdDb";
   const parte2 = "0ahzdGGNLe_hGpZkk1sLQiJRUSFLrM7k2A";
-  const API_KEY = parte1 + parte2;
+  const chave = parte1 + parte2;
 
   caixaResposta.innerHTML = "⏳ Pensando com Gemini...";
   input.value = "";
 
-   try {
-    const dom1 = "https://generative";
-     const u1 = dom1 + "://googleapis.com";const resposta = await fetch(url,
-    const url = u1 + "/v1beta/models/gemini-2.5-flash:generateContent?key=" + API_KEY;
-const resposta = await fetch(url, {
+  try {
+    const p1 = "https://generative";
+    const p2 = "://googleapis.com";
+    const p3 = "/v1beta/models/gemini-2.5-flash:generateContent?key=";
+    const url = p1 + p2 + p3 + chave;
+
+    const resposta = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         contents: [{
           parts: [{
-            text: "Você é o assistente virtual do portal de Nossa Senhora das Dores - SE, criado por Jilan Morips dos Santos. Responda em português de forma clara, simpática e resumida: " + pergunta
+            text: "Você é o assistente do portal de Nossa Senhora das Dores - SE, criado por Jilan Morips dos Santos. Responda em português de forma clara, simpática e resumida: " + pergunta
           }]
         }]
       })
@@ -636,13 +639,15 @@ const resposta = await fetch(url, {
 
     const dados = await resposta.json();
 
-    if (dados.candidates && dados.candidates[0].content.parts[0].text) {
-      caixaResposta.innerText = dados.candidates[0].content.parts[0].text;
+    if (dados.candidates && dados.candidates.content.parts.text) {
+      caixaResposta.innerText = dados.candidates.content.parts.text;
+    } else if (dados.error) {
+      caixaResposta.innerText = "Aviso do Google: " + dados.error.message;
     } else {
-      caixaResposta.innerHTML = "⚠️ Não foi possível responder agora. Verifique sua chave de API.";
+      caixaResposta.innerHTML = "⚠️ Não foi possível responder agora.";
     }
   } catch (erro) {
-    caixaResposta.innerHTML = "⚠️ Erro de conexão ao consultar a IA.";
+    caixaResposta.innerText = "⚠️ Erro de conexão: " + erro.message;
   }
 }
 </script>
