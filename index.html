@@ -631,7 +631,9 @@ function irDireto(event) {
         "Authorization": "Bearer " + chave
       },
       body: JSON.stringify({
-        model: "openai/gpt-oss-120b",
+             model: "openai/gpt-oss-120b",
+        tools: [{ type: "browser_search" }],
+
  messages: [
  {
   role: "system",
