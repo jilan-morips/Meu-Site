@@ -208,11 +208,11 @@ p {
 /* Campo de Pesquisa Central Estilo Google */
 .caixa-pesquisa {
   position: fixed;
-  top: 48%;
-  left: 50%;
+  top: 46%;
+  left: 44%; /* Mesmo alinhamento da IA */
   transform: translate(-50%, -50%);
   width: 90%;
-  max-width: 480px; /* Tamanho reduzido para alinhar com a IA */
+  max-width: 440px; /* Mesma largura da IA */
   display: flex;
   align-items: center;
   background: #ffffff;
@@ -224,12 +224,11 @@ p {
 
 /* Adaptação automática para telas grandes (TV) */
 @media (min-width: 1920px) {
-  .caixa-pesquisa {
-    max-width: 720px; /* Aumenta proporcionalmente na TV */
+  .caixa-pesquisa, #caixa-ia-principal {
+    width: 650px !important;
+    max-width: 650px !important;
   }
 }
-
-
 
 .caixa-pesquisa input {
     width: 100%;
@@ -365,12 +364,17 @@ p {
     background-size: cover !important;
     background-position: center center !important;
   }
-  #caixa-ia-principal {
+   #caixa-ia-principal {
     top: 53.5% !important;
-    left: 54.5% !important;
+    left: 44% !important;
+  }
+  #clima-box {
+    transform: scale(0.6);
+    transform-origin: top right;
   }
 }
 </style>
+
    </head><body><div id="clima-box" style="position: fixed; top: 88px; right: 35px; background-color: rgba(0, 0, 0, 0.6); color: white; padding: 10px 18px; border-radius: 12px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35); z-index: 1000;">
          <span id="clima-texto">Clima indisponível</span>
     <br>
@@ -395,15 +399,15 @@ p {
   <div class="slide" style="background-image: url('foto 3.jpg');"></div>
 </div>
  <div class="cartao">
-<form class="caixa-pesquisa" onsubmit="irDireto(event); return false;" style="margin-left: 90px;">
-
+<form class="caixa-pesquisa" onsubmit="irDireto(event); return false;" 
 
     
       <input type="text" id="termoDireto" placeholder="Digite o site ou assunto (ex: uol, globo, youtube)..." required="">
       <button type="button" onclick="irDireto(event)">🔍</button>
 </form>
 
-    <div id="caixa-ia-principal" style="position: fixed; top: 52.5%; left: 54.5%; transform: translateX(-50%); width: 520px; max-width: 92%; background: rgba(20, 25, 35, 0.90); color: white; padding: 10px 14px; border-radius: 0 0 18px 18px; backdrop-filter: blur(8px); font-family: Arial, sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,0.35); text-align: left; z-index: 999;">
+    <div id="caixa-ia-principal" style="position: fixed; top: 53%; left: 44%; transform: translateX(-50%); width: 440px; max-width: 92%;
+
 
     <h3 style="margin: 0 0 6px 0; font-size: 15px; color: #8ab4f8;">✨ Assistente IA</h3>
 
