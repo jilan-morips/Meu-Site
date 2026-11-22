@@ -379,17 +379,12 @@ p {
       </div>
       <input type="text" id="termoDireto" placeholder="Digite o site ou assunto (ex: uol, globo, youtube)..." required="">
       <button type="button" onclick="irDireto(event)">🔍</button>
+</form>
 
-    </form> 
-<div style="position: fixed; top: 54.5%; left: 54.5%; transform: translateX(-50%); width: 520px; max-width: 92%; background: rgba(20, 25, 35, 0.88); color: white; padding: 10px 14px; border-radius: 0 0 18px 18px; backdrop-filter: blur(8px); font-family: Arial, sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,0.35); text-align: left; z-index: 999;">
-
-
-<h3 style="margin: 0 0 6px 0; font-size: 15px; color: #8ab4f8;">✨ Assistente IA</h3>
+    <div id="caixa-ia-principal" style="position: fixed; top: 54.5%; left: 54.5%; transform: translateX(-50%); width: 520px; max-width: 92%; background: rgba(20, 25, 35, 0.90); color: white; padding: 10px 14px; border-radius: 0 0 18px 18px; backdrop-filter: blur(8px); font-family: Arial, sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,0.35); text-align: left; z-index: 999;">
+    <h3 style="margin: 0 0 6px 0; font-size: 15px; color: #8ab4f8;">✨ Assistente IA</h3>
 
     <div id="chatResposta" style="min-height: 32px; max-height: 110px; overflow-y: auto; background: rgba(255,255,255,0.08); padding: 8px 12px; border-radius: 10px; margin-bottom: 8px; font-size: 13.5px; line-height: 1.4;">
-
-
-    <div id="chatResposta" style="min-height: 60px; max-height: 220px; overflow-y: auto; background: rgba(255,255,255,0.08); padding: 12px 14px; border-radius: 12px; margin-bottom: 12px; font-size: 14px; line-height: 1.5;">
       Olá! Pergunte qualquer coisa abaixo.
     </div>
 
@@ -399,26 +394,23 @@ p {
         id="perguntaIA" 
         placeholder="Digite algo para a IA..." 
         onkeypress="if(event.key === 'Enter') perguntarIA()"
-        style="flex: 1; padding: 11px 15px; border-radius: 22px; border: none; outline: none; font-size: 14px;"
+        style="flex: 1; padding: 9px 14px; border-radius: 20px; border: none; outline: none; font-size: 14px;"
       >
       <button 
+        type="button"
         onclick="perguntarIA()" 
-        style="padding: 11px 20px; border-radius: 22px; border: none; background: #8ab4f8; color: #000; font-weight: bold; cursor: pointer;">
+        style="padding: 9px 18px; border-radius: 20px; border: none; background: #8ab4f8; color: #000; font-weight: bold; cursor: pointer;">
         Enviar
-      </button>  
-             <button 
+      </button>
+      <button 
         type="button"
         onclick="document.getElementById('chatResposta').innerHTML='Olá! Pergunte qualquer coisa abaixo.'; document.getElementById('perguntaIA').value=''; document.getElementById('perguntaIA').focus();" 
-        style="padding: 11px 14px; border-radius: 22px; border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #fff; font-weight: bold; cursor: pointer;">
+        style="padding: 9px 14px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #fff; font-weight: bold; cursor: pointer;">
         Limpar
       </button>
-
-      </button>
-
     </div>
   </div>
 
-    <img src="images.jpeg" alt="Cavalos no pasto">
     <h1> Jilan Morips dos santos</h1>
     <p>Glórias a Deus</p>
     
