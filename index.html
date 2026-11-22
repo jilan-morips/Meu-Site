@@ -620,9 +620,9 @@ async function perguntarIA() {
 
    try {
     const dom1 = "https://generative";
-    const u1 = dom1 + "://googleapis.com";
+     const u1 = dom1 + "://googleapis.com";const resposta = await fetch(url,
     const url = u1 + "/v1beta/models/gemini-2.5-flash:generateContent?key=" + API_KEY;
-
+const resposta = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
