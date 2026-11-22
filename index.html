@@ -653,12 +653,12 @@ function irDireto(event) {
       caixaResposta.innerText = "Aviso: " + dados.error.message;
     } else {
       caixaResposta.innerHTML = "⚠️ Não foi possível responder agora.";
-    }
-  } catch (erro) {
+    } catch (erro) {
     caixaResposta.innerText = "⚠️ Erro de conexão: " + erro.message;
   }
-} 
-     function irDireto(event) {
+}
+
+function irDireto(event) {
   if (event) event.preventDefault();
   const input = document.getElementById("termoDireto");
   let termo = input.value.trim();
@@ -671,12 +671,16 @@ function irDireto(event) {
     }
     window.open(termo, "_blank");
   } else {
-   const buscaGoogle = "https://google.com" + encodeURIComponent(termo);
+    const g1 = "https://www.google.com";
+    const g2 = "/search?q=";
+    const buscaGoogle = g1 + g2 + encodeURIComponent(termo);
     window.open(buscaGoogle, "_blank");
   }
+}
 </script>
 </body>
 </html>
+
 
 
 
