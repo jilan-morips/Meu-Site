@@ -367,10 +367,9 @@ p {
    #caixa-ia-principal {
     top: 53.5% !important;
     left: 44% !important;
-  }
-  #clima-box {
-    transform: scale(0.6);
-    transform-origin: top right;
+   #clima-box {
+    transform: scale(0.6) !important;
+    transform-origin: top right !important;
   }
 }
 </style>
@@ -399,14 +398,14 @@ p {
   <div class="slide" style="background-image: url('foto 3.jpg');"></div>
 </div>
  <div class="cartao">
-<form class="caixa-pesquisa" onsubmit="irDireto(event); return false;" 
+<form class="caixa-pesquisa" onsubmit="irDireto(event); return false;" style="z-index: 9999 !important;">
 
     
       <input type="text" id="termoDireto" placeholder="Digite o site ou assunto (ex: uol, globo, youtube)..." required="">
       <button type="button" onclick="irDireto(event)">🔍</button>
 </form>
 
-    <div id="caixa-ia-principal" style="position: fixed; top: 53%; left: 44%; transform: translateX(-50%); width: 440px; max-width: 92%;
+    <div id="caixa-ia-principal" style="position: fixed; top: 53.5%; left: 44%; transform: translateX(-50%); width: 440px; max-width: 92%; background: rgba(0, 0, 0, 0.75); padding: 15px; border-radius: 15px; color: white; z-index: 9998;">
 
 
     <h3 style="margin: 0 0 6px 0; font-size: 15px; color: #8ab4f8;">✨ Assistente IA</h3>
