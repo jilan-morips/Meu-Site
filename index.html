@@ -133,7 +133,23 @@ p {
 
     .link-youtube:hover {
       background-color: #991b1b;
-    }
+    } 
+       /* Fixa o painel esquerdo apenas em telas grandes (PC) */
+@media (min-width: 769px) {
+  .lateral-fixa {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 220px;
+    z-index: 100;
+  }
+
+  .lateral-fixa .caixa-video {
+    width: 100%;
+    margin: 15px 0 0 0;
+  }
+}
+
  /* Foto da Árvore Real com Estrelas Piscando */
 .arvore-foto-box {
     position: fixed;
@@ -435,13 +451,25 @@ p {
       </button>
     </div>
   </div>
- <h1> Jilan Morips dos santos</h1>
+  <div class="lateral-fixa">
+    <h1>Jilan Morips dos santos</h1>
     <p>Glórias a Deus</p>
-    
-  <a class="link-rio" href="pagina2.html">Cidade</a>
 
-    <br>
+    <a class="link-rio" href="pagina2.html">Cidade</a>
+
+    <!-- As duas caixas de louvores coladas aqui dentro -->
+    <div class="caixa-video">
+      ...
+    </div>
+
+    <div class="caixa-video">
+      ...
+    </div>
+  </div>
+
+  <br>
   <div class="arvore-foto-box">
+
 <img src="arvore.jpeg" alt="Arvore de Natal">
     <span class="estrela-pisca e1">✦</span>
     <span class="estrela-pisca e2">✦</span>
