@@ -604,7 +604,6 @@ function irDireto(event) {
 </div>
 
 <script>
-async function perguntarIA() {
  async function perguntarIA() {
   const input = document.getElementById("perguntaIA");
   const caixaResposta = document.getElementById("chatResposta");
@@ -621,7 +620,7 @@ async function perguntarIA() {
   input.value = "";
 
   try {
-    const u1 = "https://groq.com";
+    const u1 = "https://api.groq.com";
     const u2 = "/openai/v1/chat/completions";
     const url = u1 + u2;
 
