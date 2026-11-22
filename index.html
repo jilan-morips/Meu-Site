@@ -631,18 +631,18 @@ function irDireto(event) {
         "Authorization": "Bearer " + chave
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
-        messages: [
-          {
-            role: "system",
-            content: "Você é o assistente virtual do portal de Nossa Senhora das Dores - SE, criado por Jilan Morips dos Santos. Responda sempre em português do Brasil de forma clara, simpática e resumida."
-          },
-          {
-            role: "user",
-            content: pergunta
-          }
-        ]
-      })
+        model: "openai/gpt-oss-120b",
+ messages: [
+ {
+  role: "system",
+  content: "Você é o assistente virtual do portal de Nossa Senhora das Dores - SE, criado por Jilan Morips dos Santos. Responda sempre em português do Brasil de forma clara, simpática e resumida."
+ },
+ {
+   role: "user",
+  content: pergunta
+ }
+ ]
+ })
     });
 
     const dados = await resposta.json();
