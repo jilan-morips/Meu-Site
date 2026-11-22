@@ -657,7 +657,23 @@ function irDireto(event) {
   } catch (erro) {
     caixaResposta.innerText = "⚠️ Erro de conexão: " + erro.message;
   }
-}
+} 
+     function irDireto(event) {
+  if (event) event.preventDefault();
+  const input = document.getElementById("termoDireto");
+  let termo = input.value.trim();
+
+  if (!termo) return;
+
+  if (termo.includes(".") && !termo.includes(" ")) {
+    if (!termo.startsWith("http://") && !termo.startsWith("https://")) {
+      termo = "https://" + termo;
+    }
+    window.open(termo, "_blank");
+  } else {
+    const buscaGoogle = "https://google.com" + encodeURIComponent(termo);
+    window.open(buscaGoogle, "_blank");
+  }
 </script>
 </body>
 </html>
