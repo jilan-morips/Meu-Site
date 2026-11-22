@@ -207,27 +207,22 @@ p {
 }
 /* Campo de Pesquisa Central Estilo Google */
 .caixa-pesquisa {
-    position: fixed;
-    top: 48%;
-    left: 40%;
-    transform: translate(-50%, -50%);
-    width: 560px;
-    max-width: 90%;
-    display: flex;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.96);
-    padding: 6px 8px 6px 20px;
-    border-radius: 50px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
-    z-index: 1000;
+  position: fixed;
+  top: 48%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
+  z-index: 20;
 }
-/* Ajuste para telas grandes (TVs / Monitores 4K) */
+
+/* Adaptação automática para telas grandes (TV) */
 @media (min-width: 1920px) {
   .caixa-pesquisa {
-    max-width: 900px; /* Deixa a barra mais larga na TV */
-    left: 45%;        /* Mantém a mesma posição proporcional */
+    max-width: 900px;
   }
 }
+
 
 .caixa-pesquisa input {
     width: 100%;
