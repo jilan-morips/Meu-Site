@@ -605,43 +605,53 @@ function irDireto(event) {
 
 <script>
 async function perguntarIA() {
+ async function perguntarIA() {
   const input = document.getElementById("perguntaIA");
   const caixaResposta = document.getElementById("chatResposta");
   const pergunta = input.value.trim();
 
   if (!pergunta) return;
 
-  // COLE SUA NOVA CHAVE DIVIDIDA EM DUAS PARTES ABAIXO:
-  const parte1 = "AQ.Ab8RN6IgIHA3EmdDb";
-  const parte2 = "0ahzdGGNLe_hGpZkk1sLQiJRUSFLrM7k2A";
+  // COLE SUA CHAVE DO GROQ DIVIDIDA EM DUAS PARTES ABAIXO:
+  const parte1 = "gsk_4VpxLm768S1CvwpvldJoWGdyb3";
+  const parte2 = "FYzNirQA5QHoaLEDYk0YO4nyYO";
   const chave = parte1 + parte2;
 
-  caixaResposta.innerHTML = "⏳ Pensando com Gemini...";
+  caixaResposta.innerHTML = "⏳ Pensando com IA...";
   input.value = "";
 
-    const p1 = "https://aiplatform";
-    const p2 = ".googleapis.com";
-    const p3 = "/v1/publishers/google/models/gemini-2.5-flash:generateContent?key=";
-    const url = p1 + p2 + p3 + chave;
+  try {
+    const u1 = "https://groq.com";
+    const u2 = "/openai/v1/chat/completions";
+    const url = u1 + u2;
 
     const resposta = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + chave
+      },
       body: JSON.stringify({
-        contents: [{
-          role: "user",
-          parts: [{
-            text: "Você é o assistente do portal de Nossa Senhora das Dores - SE, criado por Jilan Morips dos Santos. Responda em português de forma clara, simpática e resumida: " + pergunta
-          }]
-        }]
+        model: "llama-3.3-70b-versatile",
+        messages: [
+          {
+            role: "system",
+            content: "Você é o assistente virtual do portal de Nossa Senhora das Dores - SE, criado por Jilan Morips dos Santos. Responda sempre em português do Brasil de forma clara, simpática e resumida."
+          },
+          {
+            role: "user",
+            content: pergunta
+          }
+        ]
       })
     });
- const dados = await resposta.json();
-    if (dados.candidates && dados.candidates[0].content.parts[0].text) {
-      caixaResposta.innerText = dados.candidates[0].content.parts[0].text;
 
+    const dados = await resposta.json();
+
+    if (dados.choices && dados.choices[0].message.content) {
+      caixaResposta.innerText = dados.choices[0].message.content;
     } else if (dados.error) {
-      caixaResposta.innerText = "Aviso do Google: " + dados.error.message;
+      caixaResposta.innerText = "Aviso: " + dados.error.message;
     } else {
       caixaResposta.innerHTML = "⚠️ Não foi possível responder agora.";
     }
@@ -652,5 +662,6 @@ async function perguntarIA() {
 </script>
 </body>
 </html>
+
 
 
