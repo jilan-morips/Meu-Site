@@ -397,10 +397,9 @@ p {
   <div class="slide" style="background-image: url('foto 2.jpg');"></div>
   <div class="slide" style="background-image: url('foto 3.jpg');"></div>
 </div>
- <div class="cartao">
+<div class="cartao">
 <form class="caixa-pesquisa" onsubmit="irDireto(event); return false;" style="z-index: 9999 !important;">
-
-    
+ 
       <input type="text" id="termoDireto" placeholder="Digite o site ou assunto (ex: uol, globo, youtube)..." required="">
       <button type="button" onclick="irDireto(event)">🔍</button>
 </form>
@@ -719,6 +718,17 @@ function irDireto(event) {
     window.open(buscaGoogle, "_blank");
   }
 }
+       const slides = document.querySelectorAll('.slide');
+  let slideAtual = 0;
+
+  if (slides.length > 1) {
+    setInterval(() => {
+      slides[slideAtual].classList.remove('ativo');
+      slideAtual = (slideAtual + 1) % slides.length;
+      slides[slideAtual].classList.add('ativo');
+    }, 30000);
+  }
+
 </script>
 </body>
 </html>
