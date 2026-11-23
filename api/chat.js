@@ -7,13 +7,13 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  try {
-        const urlGroq = 'https://api.' + 'groq' + '.com/openai/v1/chat/completions';
-
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.GROQ_API_KEY}`
+ try {
+const urlGroq = 'https://api.' + 'groq' + '.com/openai/v1/chat/completions';
+const resposta = await fetch(urlGroq, {
+method: 'POST',
+  headers: {
+  'Content-Type': 'application/json',
+  'Authorization': `Bearer ${process.env.GROQ_API_KEY}`
       },
       body: JSON.stringify(req.body)
     });
